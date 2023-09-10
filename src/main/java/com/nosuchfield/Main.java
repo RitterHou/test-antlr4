@@ -23,7 +23,9 @@ public class Main {
         for (String source : sources) {
             String input = source.split(",")[0].trim();
             BigDecimal result = new BigDecimal(source.split(",")[1].trim());
-            System.out.println(calculate(input) + " -> " + result);
+            if (!result.equals(calculate(input))) {
+                System.out.println(input + " 不等于 " + result);
+            }
         }
     }
 
