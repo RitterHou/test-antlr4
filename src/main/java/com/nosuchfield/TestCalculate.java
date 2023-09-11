@@ -14,7 +14,7 @@ import static junit.framework.TestCase.assertEquals;
 public class TestCalculate {
 
     @Test
-    public void testFact() {
+    public void testCalculate() {
         String[][] sources = new String[][]{
                 {"1 + 2", "3"},
                 {"3 - 2", "1"},
