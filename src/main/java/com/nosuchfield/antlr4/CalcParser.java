@@ -1,4 +1,4 @@
-// Generated from D:/Projects/test-antlr4/src/main/resources\Calc.g4 by ANTLR 4.12.0
+// Generated from D:/Projects/test-antlr4/src/main/resources/calc\Calc.g4 by ANTLR 4.12.0
 
 package com.nosuchfield.antlr4;
 
