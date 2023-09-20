@@ -5,6 +5,8 @@ import com.nosuchfield.antlr4.CalcParser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -29,24 +31,45 @@ public class TestCalculate {
         for (String[] source : sources) {
             String input = source[0].trim();
             BigDecimal result = new BigDecimal(source[1].trim());
-            assertEquals(calculate(input), result);
+            assertEquals(calculateByVisitor(input), result);
+            assertEquals(calculateByListener(input), result);
         }
     }
 
     /**
-     * 计算表达式
+     * 通过Visitor计算表达式
      *
      * @param expression 表达式
      * @return 计算的结果
      */
-    private BigDecimal calculate(String expression) {
+    private BigDecimal calculateByVisitor(String expression) {
         CharStream cs = CharStreams.fromString(expression);
         CalcLexer lexer = new CalcLexer(cs);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         CalcParser parser = new CalcParser(tokens);
         CalcParser.CalcContext context = parser.calc();
+
         CalculateVisitor visitor = new CalculateVisitor();
         return visitor.visit(context);
+    }
+
+    /**
+     * 通过Listener计算表达式
+     *
+     * @param expression 表达式
+     * @return 计算的结果
+     */
+    private BigDecimal calculateByListener(String expression) {
+        CharStream cs = CharStreams.fromString(expression);
+        CalcLexer lexer = new CalcLexer(cs);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        CalcParser parser = new CalcParser(tokens);
+        ParseTree tree = parser.calc();
+
+        ParseTreeWalker parseTreeWalker = new ParseTreeWalker();
+        CalculateListener calculateListener = new CalculateListener();
+        parseTreeWalker.walk(calculateListener, tree);
+        return calculateListener.getResult();
     }
 
 }

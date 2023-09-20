@@ -117,6 +117,14 @@ public class CalcParser extends Parser {
 		}
 		public CalculationBlockContext(CalcContext ctx) { copyFrom(ctx); }
 		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof CalcListener ) ((CalcListener)listener).enterCalculationBlock(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitCalculationBlock(this);
+		}
+		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitCalculationBlock(this);
 			else return visitor.visitChildren(this);
@@ -181,6 +189,14 @@ public class CalcParser extends Parser {
 		public TerminalNode BRACKET_R() { return getToken(CalcParser.BRACKET_R, 0); }
 		public ExpressionWithBrContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof CalcListener ) ((CalcListener)listener).enterExpressionWithBr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitExpressionWithBr(this);
+		}
+		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitExpressionWithBr(this);
 			else return visitor.visitChildren(this);
@@ -198,6 +214,14 @@ public class CalcParser extends Parser {
 		public TerminalNode MUL() { return getToken(CalcParser.MUL, 0); }
 		public TerminalNode DIV() { return getToken(CalcParser.DIV, 0); }
 		public ExpressionMulOrDivContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof CalcListener ) ((CalcListener)listener).enterExpressionMulOrDiv(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitExpressionMulOrDiv(this);
+		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitExpressionMulOrDiv(this);
@@ -217,6 +241,14 @@ public class CalcParser extends Parser {
 		public TerminalNode SUB() { return getToken(CalcParser.SUB, 0); }
 		public ExpressionAddOrSubContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof CalcListener ) ((CalcListener)listener).enterExpressionAddOrSub(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitExpressionAddOrSub(this);
+		}
+		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitExpressionAddOrSub(this);
 			else return visitor.visitChildren(this);
@@ -231,6 +263,14 @@ public class CalcParser extends Parser {
 		public TerminalNode ADD() { return getToken(CalcParser.ADD, 0); }
 		public TerminalNode SUB() { return getToken(CalcParser.SUB, 0); }
 		public ExpressionNumericContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof CalcListener ) ((CalcListener)listener).enterExpressionNumeric(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof CalcListener ) ((CalcListener)listener).exitExpressionNumeric(this);
+		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof CalcVisitor ) return ((CalcVisitor<? extends T>)visitor).visitExpressionNumeric(this);
