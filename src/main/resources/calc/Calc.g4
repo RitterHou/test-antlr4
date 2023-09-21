@@ -1,6 +1,6 @@
 grammar Calc;
 @header {
-package com.nosuchfield.antlr4;
+package com.nosuchfield.calc.code;
 }
 import CalcLexerRules; // 引入词法分析文件
 

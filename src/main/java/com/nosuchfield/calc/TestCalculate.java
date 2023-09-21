@@ -1,7 +1,7 @@
-package com.nosuchfield;
+package com.nosuchfield.calc;
 
-import com.nosuchfield.antlr4.CalcLexer;
-import com.nosuchfield.antlr4.CalcParser;
+import com.nosuchfield.calc.code.CalcLexer;
+import com.nosuchfield.calc.code.CalcParser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
