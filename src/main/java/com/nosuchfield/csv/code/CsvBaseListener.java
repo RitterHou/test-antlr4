@@ -1,6 +1,6 @@
 // Generated from D:/Projects/test-antlr4/src/main/resources/csv\Csv.g4 by ANTLR 4.12.0
 
-package org.example.antlr.csv.code;
+package com.nosuchfield.csv.code;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;

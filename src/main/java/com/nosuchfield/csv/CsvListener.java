@@ -1,7 +1,7 @@
-package org.example.antlr.csv;
+package com.nosuchfield.csv;
 
-import org.example.antlr.csv.code.CsvBaseListener;
-import org.example.antlr.csv.code.CsvParser;
+import com.nosuchfield.csv.code.CsvBaseListener;
+import com.nosuchfield.csv.code.CsvParser;
 
 import java.util.ArrayList;
 import java.util.HashMap;

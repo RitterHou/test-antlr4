@@ -1,7 +1,7 @@
 grammar Csv;
 
 @header {
-package org.example.antlr.csv.code;
+package com.nosuchfield.csv.code;
 }
 
 csv: hdr row*;

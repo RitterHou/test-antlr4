@@ -1,11 +1,11 @@
-package org.example.antlr.csv;
+package com.nosuchfield.csv;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import org.example.antlr.csv.code.CsvLexer;
-import org.example.antlr.csv.code.CsvParser;
+import com.nosuchfield.csv.code.CsvLexer;
+import com.nosuchfield.csv.code.CsvParser;
 import org.junit.Test;
 
 import java.io.IOException;
