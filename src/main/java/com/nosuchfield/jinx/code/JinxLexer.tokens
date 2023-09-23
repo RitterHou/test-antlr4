@@ -1,0 +1,10 @@
+VARIABLE=1
+PRINT=2
+EQUALS=3
+STRING=4
+NUMBER=5
+ID=6
+WS=7
+'var'=1
+'print'=2
+'='=3

@@ -1,0 +1,4 @@
+var name = "Mike"
+var salary = 2370
+print name
+print salary
