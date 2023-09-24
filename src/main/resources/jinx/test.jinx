@@ -1,6 +1,8 @@
+class Test {
 var name = "Mike"
 var salary = 2370
 print name
 print salary
 var number = 1.1
 print number
+}

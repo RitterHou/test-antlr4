@@ -13,6 +13,7 @@ import org.objectweb.asm.MethodVisitor;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 import static org.objectweb.asm.Opcodes.*;
@@ -59,8 +60,9 @@ public class Compiler {
         // 遍历语法树生成Java指令
         List<Instruction> instructions = loader.getInstructions();
         // 生成Java.class文件
-        writeByteArrayToFile(file.replace(".jinx", ".class"),
-                generateBytecode(instructions, new File(file).getName().replace(".jinx", "")));
+        String className = loader.getClassName();
+        String classFile = Paths.get(new File(file).getParent(), className + ".class").toString();
+        writeByteArrayToFile(classFile, generateBytecode(instructions, className));
     }
 
     /**

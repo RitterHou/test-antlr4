@@ -4,11 +4,15 @@ grammar Jinx;
 package com.nosuchfield.jinx.code;
 }
 
-jinx: (variable | print)* EOF;
+jinx: CLASS ID LEFT_BR classBody RIGHT_BR EOF;
+classBody: (variable | print)*;
 variable: VARIABLE ID EQUALS value;
 print: PRINT ID;
 value: STRING | INT | DOUBLE;
 
+LEFT_BR: '{';
+RIGHT_BR: '}';
+CLASS: 'class';
 VARIABLE: 'var';
 PRINT: 'print';
 EQUALS: '=';
@@ -19,5 +23,3 @@ INT: [0-9]+;
 ID: [a-zA-Z] [a-zA-Z0-9]*;
 
 WS: [\n\r\t ]+ -> skip;
-
-// 参考：http://jakubdziworski.github.io/enkel/2016/03/16/enkel_3_hello_enkel.html
