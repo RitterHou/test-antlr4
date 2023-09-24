@@ -27,10 +27,10 @@ public class PrintInstruction implements Instruction, Opcodes {
         if (type == JinxLexer.INT) {
             mv.visitVarInsn(ILOAD, id);
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(I)V", false);
-        } else if (type == JinxLexer.DOUBLE){
+        } else if (type == JinxLexer.DOUBLE) {
             mv.visitVarInsn(DLOAD, id);
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(D)V", false);
-        }else if (type == JinxLexer.STRING) {
+        } else if (type == JinxLexer.STRING) {
             mv.visitVarInsn(ALOAD, id);
             mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
         }

@@ -6,8 +6,6 @@ import com.nosuchfield.jinx.instruction.Instruction;
 import com.nosuchfield.jinx.instruction.PrintInstruction;
 import com.nosuchfield.jinx.instruction.VariableInstruction;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
-import org.apache.commons.lang3.tuple.MutablePair;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -6,7 +6,7 @@ public class TestJinx {
 
     @Test
     public void testJinx() {
-        Compiler.INSTANCE.compile("src/main/resources/jinx/test.jinx");
+        Compiler.getInstance().compile("src/main/resources/jinx/test.jinx");
     }
 
 }

@@ -10,7 +10,6 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,7 +20,22 @@ import static org.objectweb.asm.Opcodes.*;
 
 public class Compiler {
 
-    public static Compiler INSTANCE = new Compiler();
+    private volatile static Compiler compiler;
+
+    private Compiler() {
+
+    }
+
+    public static Compiler getInstance() {
+        if (compiler == null) {
+            synchronized (Compiler.class) {
+                if (compiler == null) {
+                    compiler = new Compiler();
+                }
+            }
+        }
+        return compiler;
+    }
 
     public void compile(String file) {
         try {
@@ -33,7 +47,7 @@ public class Compiler {
 
     public void compile0(String file) throws IOException {
         // 词法分析
-        JinxLexer lexer  = new JinxLexer(CharStreams.fromFileName(file));
+        JinxLexer lexer = new JinxLexer(CharStreams.fromFileName(file));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         // 语法分析
         JinxParser parser = new JinxParser(tokens);
@@ -47,42 +61,41 @@ public class Compiler {
         // 遍历语法树生成Java指令
         List<Instruction> instructions = loader.getInstructions();
         // 生成Java.class文件
-        writeByteArrayToFile(file.replace(".jinx",".class"),
-                generateBytecode(instructions, new File(file).getName().replace(".jinx","")));
+        writeByteArrayToFile(file.replace(".jinx", ".class"),
+                generateBytecode(instructions, new File(file).getName().replace(".jinx", "")));
     }
 
     /**
      * 将指令转化为class文件
+     *
      * @param instructions 指令列表
-     * @param className 类名
+     * @param className    类名
      * @return class文件
      */
     private byte[] generateBytecode(List<Instruction> instructions, String className) {
-        ClassWriter cw = new ClassWriter(0);
+        ClassWriter classWriter = new ClassWriter(0);
         // 类
-        cw.visit(V1_8, ACC_PUBLIC + ACC_SUPER, className, null, "java/lang/Object", null);
+        classWriter.visit(V1_8, ACC_PUBLIC + ACC_SUPER, className, null, "java/lang/Object", null);
         // main方法
-        MethodVisitor mv = cw.visitMethod(ACC_PUBLIC + ACC_STATIC, "main", "([Ljava/lang/String;)V", null, null);
+        MethodVisitor methodVisitor = classWriter.visitMethod(ACC_PUBLIC + ACC_STATIC, "main", "([Ljava/lang/String;)V", null, null);
 
         long localVariablesCount = instructions.stream()
                 .filter(instruction -> instruction instanceof VariableInstruction)
                 .count();
         for (Instruction instruction : instructions) {
-            instruction.apply(mv);
+            instruction.apply(methodVisitor);
         }
-        mv.visitInsn(RETURN);
-        mv.visitMaxs(100, (int) localVariablesCount + 10);
-        mv.visitEnd();
+        methodVisitor.visitInsn(RETURN);
+        methodVisitor.visitMaxs(100, (int) localVariablesCount + 10);
+        methodVisitor.visitEnd();
 
-        cw.visitEnd();
-        return cw.toByteArray();
+        classWriter.visitEnd();
+        return classWriter.toByteArray();
     }
 
-    private void writeByteArrayToFile(String file, byte[] data) {
+    private void writeByteArrayToFile(String file, byte[] data) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write(data);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

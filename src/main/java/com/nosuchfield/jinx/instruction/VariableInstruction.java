@@ -29,7 +29,7 @@ public class VariableInstruction implements Instruction, Opcodes {
 
     @Override
     public void apply(MethodVisitor mv) {
-        System.out.printf("id=%d type=%d value=%s \n", id,type, value);
+        System.out.printf("id=%d type=%d value=%s \n", id, type, value);
         if (type == JinxLexer.DOUBLE) {
             double val = Double.parseDouble(value);
             // 常量池的数据推到栈顶
