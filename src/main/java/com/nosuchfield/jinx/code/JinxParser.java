@@ -1,4 +1,4 @@
-// Generated from D:/Projects/test-antlr4/src/main/resources/jinx\Jinx.g4 by ANTLR 4.12.0
+// Generated from /Users/hourui/IdeaProjects/test-antlr4/src/main/resources/jinx/Jinx.g4 by ANTLR 4.13.1
 
 package com.nosuchfield.jinx.code;
 
@@ -13,13 +13,13 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class JinxParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.12.0", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.13.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		VARIABLE=1, PRINT=2, EQUALS=3, STRING=4, NUMBER=5, ID=6, WS=7;
+		VARIABLE=1, PRINT=2, EQUALS=3, STRING=4, INT=5, DOUBLE=6, ID=7, WS=8;
 	public static final int
 		RULE_jinx = 0, RULE_variable = 1, RULE_print = 2, RULE_value = 3;
 	private static String[] makeRuleNames() {
@@ -37,7 +37,8 @@ public class JinxParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "VARIABLE", "PRINT", "EQUALS", "STRING", "NUMBER", "ID", "WS"
+			null, "VARIABLE", "PRINT", "EQUALS", "STRING", "INT", "DOUBLE", "ID", 
+			"WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -263,7 +264,8 @@ public class JinxParser extends Parser {
 	@SuppressWarnings("CheckReturnValue")
 	public static class ValueContext extends ParserRuleContext {
 		public TerminalNode STRING() { return getToken(JinxParser.STRING, 0); }
-		public TerminalNode NUMBER() { return getToken(JinxParser.NUMBER, 0); }
+		public TerminalNode INT() { return getToken(JinxParser.INT, 0); }
+		public TerminalNode DOUBLE() { return getToken(JinxParser.DOUBLE, 0); }
 		public ValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -287,7 +289,7 @@ public class JinxParser extends Parser {
 			{
 			setState(25);
 			_la = _input.LA(1);
-			if ( !(_la==STRING || _la==NUMBER) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 112L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -309,24 +311,24 @@ public class JinxParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0007\u001c\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
-		"\u0002\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0001\u0000\u0001\u0000"+
-		"\u0005\u0000\u000b\b\u0000\n\u0000\f\u0000\u000e\t\u0000\u0001\u0000\u0001"+
-		"\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
-		"\u0002\u0001\u0002\u0001\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0000"+
-		"\u0000\u0004\u0000\u0002\u0004\u0006\u0000\u0001\u0001\u0000\u0004\u0005"+
-		"\u0019\u0000\f\u0001\u0000\u0000\u0000\u0002\u0011\u0001\u0000\u0000\u0000"+
-		"\u0004\u0016\u0001\u0000\u0000\u0000\u0006\u0019\u0001\u0000\u0000\u0000"+
-		"\b\u000b\u0003\u0002\u0001\u0000\t\u000b\u0003\u0004\u0002\u0000\n\b\u0001"+
-		"\u0000\u0000\u0000\n\t\u0001\u0000\u0000\u0000\u000b\u000e\u0001\u0000"+
-		"\u0000\u0000\f\n\u0001\u0000\u0000\u0000\f\r\u0001\u0000\u0000\u0000\r"+
-		"\u000f\u0001\u0000\u0000\u0000\u000e\f\u0001\u0000\u0000\u0000\u000f\u0010"+
-		"\u0005\u0000\u0000\u0001\u0010\u0001\u0001\u0000\u0000\u0000\u0011\u0012"+
-		"\u0005\u0001\u0000\u0000\u0012\u0013\u0005\u0006\u0000\u0000\u0013\u0014"+
-		"\u0005\u0003\u0000\u0000\u0014\u0015\u0003\u0006\u0003\u0000\u0015\u0003"+
-		"\u0001\u0000\u0000\u0000\u0016\u0017\u0005\u0002\u0000\u0000\u0017\u0018"+
-		"\u0005\u0006\u0000\u0000\u0018\u0005\u0001\u0000\u0000\u0000\u0019\u001a"+
-		"\u0007\u0000\u0000\u0000\u001a\u0007\u0001\u0000\u0000\u0000\u0002\n\f";
+		"\u0004\u0001\b\u001c\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0001\u0000\u0001\u0000\u0005"+
+		"\u0000\u000b\b\u0000\n\u0000\f\u0000\u000e\t\u0000\u0001\u0000\u0001\u0000"+
+		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0002"+
+		"\u0001\u0002\u0001\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0000\u0000"+
+		"\u0004\u0000\u0002\u0004\u0006\u0000\u0001\u0001\u0000\u0004\u0006\u0019"+
+		"\u0000\f\u0001\u0000\u0000\u0000\u0002\u0011\u0001\u0000\u0000\u0000\u0004"+
+		"\u0016\u0001\u0000\u0000\u0000\u0006\u0019\u0001\u0000\u0000\u0000\b\u000b"+
+		"\u0003\u0002\u0001\u0000\t\u000b\u0003\u0004\u0002\u0000\n\b\u0001\u0000"+
+		"\u0000\u0000\n\t\u0001\u0000\u0000\u0000\u000b\u000e\u0001\u0000\u0000"+
+		"\u0000\f\n\u0001\u0000\u0000\u0000\f\r\u0001\u0000\u0000\u0000\r\u000f"+
+		"\u0001\u0000\u0000\u0000\u000e\f\u0001\u0000\u0000\u0000\u000f\u0010\u0005"+
+		"\u0000\u0000\u0001\u0010\u0001\u0001\u0000\u0000\u0000\u0011\u0012\u0005"+
+		"\u0001\u0000\u0000\u0012\u0013\u0005\u0007\u0000\u0000\u0013\u0014\u0005"+
+		"\u0003\u0000\u0000\u0014\u0015\u0003\u0006\u0003\u0000\u0015\u0003\u0001"+
+		"\u0000\u0000\u0000\u0016\u0017\u0005\u0002\u0000\u0000\u0017\u0018\u0005"+
+		"\u0007\u0000\u0000\u0018\u0005\u0001\u0000\u0000\u0000\u0019\u001a\u0007"+
+		"\u0000\u0000\u0000\u001a\u0007\u0001\u0000\u0000\u0000\u0002\n\f";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

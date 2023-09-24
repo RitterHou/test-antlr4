@@ -7,13 +7,14 @@ package com.nosuchfield.jinx.code;
 jinx: (variable | print)* EOF;
 variable: VARIABLE ID EQUALS value;
 print: PRINT ID;
-value: STRING | NUMBER;
+value: STRING | INT | DOUBLE;
 
 VARIABLE: 'var';
 PRINT: 'print';
 EQUALS: '=';
 STRING: '"' ('\\"' | ~'"')+ '"';
-NUMBER: [0-9]+ ('.' [0-9]+)?;
+DOUBLE: [0-9]+ '.' [0-9]+;
+INT: [0-9]+;
 // 这个ID不能放在前面，不然会被提前解析，导致print等字符串被解析为ID
 ID: [a-zA-Z] [a-zA-Z0-9]*;
 

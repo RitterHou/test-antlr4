@@ -17,9 +17,9 @@ import java.util.Map;
 public class Loader extends JinxBaseListener {
 
     /**
-     * 变量表，以变量名为key，包括：变量idx、变量类型、变量的值
+     * 变量表，以变量名为key，包括：变量索引idx、变量类型
      */
-    private final Map<String, ImmutableTriple<Integer, Integer, String>> variables = new HashMap<>();
+    private final Map<String, ImmutablePair<Integer, Integer>> variables = new HashMap<>();
 
     /**
      * 指令列表
@@ -28,13 +28,20 @@ public class Loader extends JinxBaseListener {
 
     @Override
     public void exitVariable(JinxParser.VariableContext ctx) {
+        // 变量名
         String id = ctx.ID().getText();
         JinxParser.ValueContext variable = ctx.value();
+        // 变量值
         String text = variable.getText();
+        // 变量类型
         int type = variable.getStart().getType();
+        // 变量索引（表示这是第几个变量）
         int idx = variables.size();
+
+        // 把这个变量保存在内存，方便后面知道这个变量的索引和类型
+        variables.put(id, ImmutablePair.of(idx, type));
+        // 创建保存这个变量的指令
         instructions.add(new VariableInstruction(idx, type, text));
-        variables.put(id, ImmutableTriple.of(idx, type, text));
     }
 
     @Override
@@ -44,7 +51,10 @@ public class Loader extends JinxBaseListener {
             System.err.printf("variable %s not exist\n", id);
             System.exit(1);
         }
-        instructions.add(new PrintInstruction(variables.get(id).getLeft(), variables.get(id).getMiddle()));
+        int idx = variables.get(id).getLeft();
+        int type = variables.get(id).getRight();
+        // 创建打印的指令
+        instructions.add(new PrintInstruction(idx, type));
     }
 
     public List<Instruction> getInstructions() {

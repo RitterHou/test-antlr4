@@ -6,10 +6,19 @@ import org.objectweb.asm.Opcodes;
 
 public class VariableInstruction implements Instruction, Opcodes {
 
+    /**
+     * 变量索引
+     */
     private final int id;
 
+    /**
+     * 变量类型
+     */
     private final int type;
 
+    /**
+     * 变量的值
+     */
     private final String value;
 
     public VariableInstruction(int id, int type, String value) {
@@ -20,9 +29,16 @@ public class VariableInstruction implements Instruction, Opcodes {
 
     @Override
     public void apply(MethodVisitor mv) {
-        if (type == JinxLexer.NUMBER) {
+        System.out.printf("id=%d type=%d value=%s \n", id,type, value);
+        if (type == JinxLexer.DOUBLE) {
+            double val = Double.parseDouble(value);
+            // 常量池的数据推到栈顶
+            mv.visitLdcInsn(val);
+            // 栈顶double值存入本地变量
+            mv.visitVarInsn(DSTORE, id);
+        } else if (type == JinxLexer.INT) {
             int val = Integer.parseInt(value);
-            mv.visitIntInsn(BIPUSH, val);
+            mv.visitLdcInsn(val);
             mv.visitVarInsn(ISTORE, id);
         } else if (type == JinxLexer.STRING) {
             mv.visitLdcInsn(value);

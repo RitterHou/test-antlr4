@@ -2,9 +2,10 @@ VARIABLE=1
 PRINT=2
 EQUALS=3
 STRING=4
-NUMBER=5
-ID=6
-WS=7
+INT=5
+DOUBLE=6
+ID=7
+WS=8
 'var'=1
 'print'=2
 '='=3
