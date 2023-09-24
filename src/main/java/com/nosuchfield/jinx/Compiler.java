@@ -3,7 +3,6 @@ package com.nosuchfield.jinx;
 import com.nosuchfield.jinx.code.JinxLexer;
 import com.nosuchfield.jinx.code.JinxParser;
 import com.nosuchfield.jinx.instruction.Instruction;
-import com.nosuchfield.jinx.instruction.VariableInstruction;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -23,7 +22,6 @@ public class Compiler {
     private volatile static Compiler compiler;
 
     private Compiler() {
-
     }
 
     public static Compiler getInstance() {
@@ -73,22 +71,17 @@ public class Compiler {
      * @return class文件
      */
     private byte[] generateBytecode(List<Instruction> instructions, String className) {
-        ClassWriter classWriter = new ClassWriter(0);
-        // 类
+        ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
         classWriter.visit(V1_8, ACC_PUBLIC + ACC_SUPER, className, null, "java/lang/Object", null);
         // main方法
-        MethodVisitor methodVisitor = classWriter.visitMethod(ACC_PUBLIC + ACC_STATIC, "main", "([Ljava/lang/String;)V", null, null);
-
-        long localVariablesCount = instructions.stream()
-                .filter(instruction -> instruction instanceof VariableInstruction)
-                .count();
+        MethodVisitor methodVisitor = classWriter.visitMethod(ACC_PUBLIC + ACC_STATIC, "main",
+                "([Ljava/lang/String;)V", null, null);
         for (Instruction instruction : instructions) {
             instruction.apply(methodVisitor);
         }
         methodVisitor.visitInsn(RETURN);
-        methodVisitor.visitMaxs(100, (int) localVariablesCount + 10);
+        methodVisitor.visitMaxs(0, 0); // 设置COMPUTE_FRAMES后会自动计算，但是此处设置不能省略
         methodVisitor.visitEnd();
-
         classWriter.visitEnd();
         return classWriter.toByteArray();
     }
