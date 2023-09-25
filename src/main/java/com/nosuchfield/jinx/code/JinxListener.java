@@ -1,4 +1,4 @@
-// Generated from D:/Projects/test-antlr4/src/main/resources/jinx\Jinx.g4 by ANTLR 4.12.0
+// Generated from D:/Projects/test-antlr4/src/main/resources/jinx/Jinx.g4 by ANTLR 4.13.1
 
 package com.nosuchfield.jinx.code;
 
