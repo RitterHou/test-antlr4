@@ -33,9 +33,10 @@ public class VariableInstruction implements Instruction, Opcodes {
         switch (type) {
             case JinxLexer.DOUBLE -> {
                 double val = Double.parseDouble(value);
-                // 常量池的数据推到栈顶
+                // 虚拟机栈 -> 栈帧 -> 操作数栈、局部变量表
+                // val会被存在常量池中，并将常量池中的这个变量推到操作数栈顶
                 mv.visitLdcInsn(val);
-                // 栈顶double值存入本地局部变量，idx代表索引
+                // 操作数栈顶的double值存入本地局部变量，idx代表本地变量表的索引
                 mv.visitVarInsn(DSTORE, idx);
             }
             case JinxLexer.INT -> {
