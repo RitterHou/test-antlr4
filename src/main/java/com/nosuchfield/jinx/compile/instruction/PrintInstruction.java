@@ -1,9 +1,11 @@
 package com.nosuchfield.jinx.compile.instruction;
 
 import com.nosuchfield.jinx.code.JinxLexer;
+import lombok.AllArgsConstructor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
+@AllArgsConstructor
 public class PrintInstruction implements Instruction, Opcodes {
 
     /**
@@ -15,11 +17,6 @@ public class PrintInstruction implements Instruction, Opcodes {
      * 对应的这个变量的类型
      */
     private final int type;
-
-    public PrintInstruction(int idx, int type) {
-        this.idx = idx;
-        this.type = type;
-    }
 
     @Override
     public void apply(MethodVisitor mv) {

@@ -2,9 +2,11 @@ package com.nosuchfield.jinx.compile.instruction;
 
 import com.nosuchfield.jinx.common.Utils;
 import com.nosuchfield.jinx.code.JinxLexer;
+import lombok.AllArgsConstructor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
+@AllArgsConstructor
 public class VariableInstruction implements Instruction, Opcodes {
 
     /**
@@ -21,12 +23,6 @@ public class VariableInstruction implements Instruction, Opcodes {
      * 变量的值
      */
     private final String value;
-
-    public VariableInstruction(int idx, int type, String value) {
-        this.idx = idx;
-        this.type = type;
-        this.value = value;
-    }
 
     @Override
     public void apply(MethodVisitor mv) {

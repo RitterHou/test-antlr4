@@ -5,6 +5,7 @@ import com.nosuchfield.jinx.code.JinxParser;
 import com.nosuchfield.jinx.compile.instruction.Instruction;
 import com.nosuchfield.jinx.compile.instruction.PrintInstruction;
 import com.nosuchfield.jinx.compile.instruction.VariableInstruction;
+import lombok.Getter;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.ArrayList;
@@ -22,8 +23,10 @@ public class Loader extends JinxBaseListener {
     /**
      * 指令列表
      */
+    @Getter
     private final List<Instruction> instructions = new ArrayList<>();
 
+    @Getter
     private String className;
 
     @Override
@@ -60,14 +63,6 @@ public class Loader extends JinxBaseListener {
         int type = variables.get(name).getRight();
         // 创建打印的指令
         instructions.add(new PrintInstruction(idx, type));
-    }
-
-    public List<Instruction> getInstructions() {
-        return instructions;
-    }
-
-    public String getClassName() {
-        return className;
     }
 
 }
