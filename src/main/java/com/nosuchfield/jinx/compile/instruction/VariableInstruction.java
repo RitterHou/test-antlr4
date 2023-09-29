@@ -1,4 +1,4 @@
-package com.nosuchfield.jinx.instruction;
+package com.nosuchfield.jinx.compile.instruction;
 
 import com.nosuchfield.jinx.common.Utils;
 import com.nosuchfield.jinx.code.JinxLexer;

@@ -1,4 +1,4 @@
-package com.nosuchfield.jinx.instruction;
+package com.nosuchfield.jinx.compile.instruction;
 
 import org.objectweb.asm.MethodVisitor;
 

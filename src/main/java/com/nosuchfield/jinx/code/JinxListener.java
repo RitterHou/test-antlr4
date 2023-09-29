@@ -30,6 +30,46 @@ public interface JinxListener extends ParseTreeListener {
 	 */
 	void exitClassBody(JinxParser.ClassBodyContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JinxParser#functionDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionDeclaration(JinxParser.FunctionDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JinxParser#functionDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionDeclaration(JinxParser.FunctionDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JinxParser#functionParams}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionParams(JinxParser.FunctionParamsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JinxParser#functionParams}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionParams(JinxParser.FunctionParamsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JinxParser#functionBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionBody(JinxParser.FunctionBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JinxParser#functionBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionBody(JinxParser.FunctionBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JinxParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCall(JinxParser.FunctionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JinxParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCall(JinxParser.FunctionCallContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JinxParser#variable}.
 	 * @param ctx the parse tree
 	 */

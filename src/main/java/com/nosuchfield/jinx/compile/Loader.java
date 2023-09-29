@@ -2,9 +2,9 @@ package com.nosuchfield.jinx.compile;
 
 import com.nosuchfield.jinx.code.JinxBaseListener;
 import com.nosuchfield.jinx.code.JinxParser;
-import com.nosuchfield.jinx.instruction.Instruction;
-import com.nosuchfield.jinx.instruction.PrintInstruction;
-import com.nosuchfield.jinx.instruction.VariableInstruction;
+import com.nosuchfield.jinx.compile.instruction.Instruction;
+import com.nosuchfield.jinx.compile.instruction.PrintInstruction;
+import com.nosuchfield.jinx.compile.instruction.VariableInstruction;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.ArrayList;

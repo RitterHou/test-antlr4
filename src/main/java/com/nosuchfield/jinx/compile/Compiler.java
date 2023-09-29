@@ -2,7 +2,7 @@ package com.nosuchfield.jinx.compile;
 
 import com.nosuchfield.jinx.code.JinxLexer;
 import com.nosuchfield.jinx.code.JinxParser;
-import com.nosuchfield.jinx.instruction.Instruction;
+import com.nosuchfield.jinx.compile.instruction.Instruction;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
