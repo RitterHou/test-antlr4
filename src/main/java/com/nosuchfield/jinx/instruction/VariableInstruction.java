@@ -1,6 +1,6 @@
 package com.nosuchfield.jinx.instruction;
 
-import com.nosuchfield.jinx.Utils;
+import com.nosuchfield.jinx.common.Utils;
 import com.nosuchfield.jinx.code.JinxLexer;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;

@@ -1,4 +1,4 @@
-package com.nosuchfield.jinx;
+package com.nosuchfield.jinx.compile;
 
 import com.nosuchfield.jinx.code.JinxBaseListener;
 import com.nosuchfield.jinx.code.JinxParser;

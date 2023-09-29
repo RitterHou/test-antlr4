@@ -1,5 +1,6 @@
 package com.nosuchfield.jinx;
 
+import com.nosuchfield.jinx.compile.Compiler;
 import org.junit.Test;
 
 /**

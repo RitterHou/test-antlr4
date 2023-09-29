@@ -1,4 +1,4 @@
-package com.nosuchfield.jinx;
+package com.nosuchfield.jinx.common;
 
 public class Utils {
 

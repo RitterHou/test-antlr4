@@ -1,4 +1,4 @@
-package com.nosuchfield.jinx;
+package com.nosuchfield.jinx.compile;
 
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
